@@ -1,0 +1,273 @@
+### What are FASTQ files and how they different form FASTA file ?
+## Fastq files are the sequencing output files files obtained after demultimplexing (sorting or separating sequencing reads based on their unique barcodes or indices) data from illumina seqeuncers. Most sequencing companies provide this file format for illumina data.
+## Structure of fastq files
+
+Line 1: @SRR15369215.126490887 #sequence identifier
+Line 2: GGACCTTCTGTCATTTCACTCCTTCTGAAGTAAGGAGTGAAGTAAACACGAAGTAAACACGACAGGTTAGTCCTATTCCTTCAAGCAGGAGTACAGAAAAGAATGCAAATTCTGGGTTCTAGCCCAGCTTTTACTCCTATGGTTCTATTT #sequence
+Line 3:+ #seperator
+Line 4: AAFFFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJFJJJJJJJJJJFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFAFJJJJJJJJJJJJJJJJFJJJJJJJJJFJJJJJJJJJFFFJJJJJJJJJJJ #base call quality scores (ASCII characters)
+
+## ASCII-(American Standard Code for Information Interchange) define Phred Quality Score (Q score) corresponding to each base in the sequence.
+## Phred Quality Score (Q score)=−10log10(P), The Phred quality score is a measure used to indicate the accuracy of a base call in DNA sequencing.
+## ASSCII & corrosponding score-https://www.ascii-code.com/
+
+### Processsing of the Fastq files 
+# Remove low-quality reads -fastqc
+# Trim adapters -trimgalore
+# Assess Base Quality-fastqc
+
+###################################################################################################################################################################
+
+### For fastq files use zonedo link-https://zenodo.org/records/14258052
+
+wget link of the file 
+
+# Downloaded file will look like this 'BEN_CI18_sub_1.fq.gz?download=1'. Change the name of the file by running this below commamnd. The final file would be look like this BEN_CI18_sub_1_fastqc.zip
+
+for file in *\?download=1; do
+    newname=$(echo "$file" | sed "s/?download=1//")
+    mv "$file" "$newname"
+done
+
+### Install conda (https://docs.anaconda.com/miniconda/install/) (conda-is a package management software & environment, It will help to create different environment for variety of tools )
+
+mkdir -p ~/miniconda3 
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
+
+## This command will create a directry name as miniconda and then it will download the miniconda installer script and it will removes the installer script after installation.
+
+## After installing, close and reopen your terminal application or refresh it by running the following command:
+source ~/miniconda3/bin/activate
+
+## To initialize conda on all available shells, run the following command:
+miniconda3/bin/./conda init --all
+
+### Install fastqc
+conda create -n fastqc -c bioconda fastqc
+#conda create: creats a new conda environment. Conda environments are isolated environments that allows to manage dependencies and packages for specific projects without affecting the global setup.
+#-n: short for --name. (here it would be fastqc).
+#-c: specifices the channel used to download packages (here we are getting fastqc packages in the bioconda channel).
+#fastqc: name of the package or the tool we are installing in the new environment. Used for quality control of sequencing data.
+
+## Activate the conda environment
+conda activate fastqc
+## run fastqc
+fastqc *.fq.gz
+# * is a wild card. This command will run all the files name with .fq.gz
+
+## Output files generated after running fastqc = "BEN_CI16_sub_1_fastqc.zip" and "BEN_CI16_sub_1_fastqc.html".
+# .html file includes visualisations and details about the quality metrics of the sequencing data.
+# .gzip file includes summary of the main quality control metrics, detailed quality control data in text format, graphs and images using in .html report.
+# .gzip would have much more detailed information
+
+#for simplicity; you can transfer all the .zip files in a global zip folder and all the .html files in a global html folder.
+
+mkdir zip_files html_files #"zip_files" and "html_files" directories would be created
+mv *.zip zip_files/ #all the .zip files would be moved to "zip_files"
+mv *.html html_files/ #all the .html files would be moved to "html_files"
+#to visualize the .html files, they can be copied locally to your local computer from the remote cluster
+
+exit #logout from the remote cluster
+scp -r name@IP_address:path to the file or directory ~/
+
+## Deactivate the conda environment
+conda deactivate fastqc
+
+#######################################################################################################################################################################
+
+### Trimming 
+## Trimming refers to cleaning your raw sequencing reads before mapping. This step removes:adapters, low quality bases, and too short reads
+
+#### Install trim_galore
+conda create -n trim-galore -c bioconda trim-galore
+
+## activate the conda environment
+conda activate trim-galore
+
+trim_galore --paired --illumina BEN_CI16_sub_1.fq.gz BEN_CI16_sub_2.fq.gz
+
+#trim_galore: executes Trim Galore tool. it has two tools; Cutadapt (for adapter trimming) and FastQC (for QC checks)
+#--paired: specifies input files are paired-end reads (DNA fragment is sequenced from both ends, producing two reads per fragment).
+
+#you will get "BEN_CI16_sub_1.fq.gz_trimming_report.txt" and "BEN_CI16_sub_2.fq.gz_trimming_report.txt" as the output.
+
+less BEN_CI16_sub_2.fq.gz_trimming_report.txt # less-to view the .txt file
+
+## triming for single fasta file
+trim_galore --fastqc BEN_CI16_sub_1.fq.gz
+
+###  trimming all file named as fq.gz use the following command
+
+# Use * as wildcard to consider any file with the format *_1.fq.gz as an input
+for file in *.fq.gz; do
+  trim_galore --paired "$file" "${file/_1.fq.gz/_2.fq.gz}"
+done
+
+# "$file" refers to the current forward read (read 1).
+# ${file/_1.fq.gz/_2.fq.gz} dynamically generates the corresponding reverse read (read 2) by replacing _1 with _2 in the file name.
+
+# Output files generated after running trim-galore : 
+#BEN_CI16_sub_1.fq.gz_trimming_report.txt (summary report generated during the trimming process)
+#BEN_CI16_sub_1_val_1.fq.gz (val_1: refers to a validated or quality-checked file. In tools like Trim Galore, files are renamed with val_1 post trimming process)
+
+# Alternative command
+for file in BEN_CI18_sub_1.fq.gz BEN_NW13_sub_1.fq.gz BEN_SI9_sub_1.fq.gz BEN_NW10_sub_1.fq.gz BEN_SI18_sub_1.fq.gz LGS1_sub_1.fq.gz BEN_NW12_sub_1.fq.gz BEN_SI19_sub_1.fq.gz; do
+    paired_file=${file/_1.fq.gz/_2.fq.gz}
+    trim_galore --paired "$file" "$paired_file"
+done
+
+## Deactivate the conda environment
+conda deactivate trim-galore
+
+###############################################################################################################################################################
+
+### Mapping and sorting
+# Mapping-the process of aligning sequencing reads to a reference genome to determine their original genomic location.
+# Map trimmed reads using bwa mem.
+# BWA (Burrows-Wheeler Aligner) — it's a fast and memory-efficient tool used to align short DNA sequencing reads to a reference genome.
+
+### Install bwa
+conda create -n bwa -c bioconda bwa
+## Activate the conda environment
+conda activate bwa
+
+## for single file 
+
+bwa mem GCA_021130815.1_PanTigT.MC.v3_genomic.fna BEN_NW10_sub_1_val_1.fq.gz BEN_NW10_sub_2_val_2.fq.gz > BEN_NW_10_aligned_reads.sam
+
+#bwa mem: runs the "mem" algorithm of BWA and give SAM (Sequence Alignment/Map format) as a output file. It is optimum for 70bp-1Mbp reads, and commonly used for Illumina short-read data.
+#GCA_021130815.1_PanTigT.MC.v3_genomic.fna: reference genome in FASTA format. The bwa index file should also be present.
+#../fq_files/BEN_NW10_sub_1_val_1.fq.gz ../fq_files/BEN_NW10_sub_2_val_2.fq.gz: These are the paired-end FASTQ files.
+#> BEN_NW_10_aligned_reads.sam: SAM file alignment output. It contains detailed alignment information for each read.
+
+# Mapping all reads to reference genome in single step
+
+for file1 in *_sub_1_val_1.fq.gz; do
+    file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}
+    sample_name=$(basename "$file1" _sub_1_val_1.fq.gz)
+    
+    bwa mem GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "${sample_name}_aligned_reads.sam"
+done
+#for file1 in *_sub_1_val_1.fq.gz; do: looks through all the read 1(forward) FASTQ files.
+#file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}: constructs the corresponding read 2 (reverse) file name by replacing _sub_1_val_1.fq.gz with _sub_2_val_2.fq.gz in file1.
+#sample_name=$(basename "$file1" _sub_1_val_1.fq.gz): removes the _sub_1_val_1.fq.gz part from the filename, leaving just the sample ID (e.g., BEN_NW10).
+# bwa mem GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "${sample_name}_aligned_reads.sam": runs the actual alignment
+
+## Deactivate the conda environment
+conda deactivate
+
+### Convert sam to bam by samtools (Link). Binary Alignment/Map. Converting SAM files to BAM is an essential step for downstream analysis because it is compressed, and indexed that speed up the analysis.
+# Indexing is the process of pre-processing a reference genome to create special helper files that allow fast searching and alignment of reads. 
+
+conda activate samtools
+
+samtools view -S -b BEN_NW_10_aligned_reads.sam | samtools sort -o BEN_NW_10_sorted_reads.bam
+
+## view: This is the subcommand in samtools used to convert, filter, or view alignment files.
+## -S: Specifies that the input file is in SAM (Sequence AlignmentMap) format.
+## -b: Specifies that the output file should be in BAM (Binary Alignment Map) format, which is a compressed version of the SAM format.
+
+Convert all sam files to bam and sort the reads
+
+for file in *.sam; do 
+    samtools view -S -b "$file" | samtools sort -o "${file%.sam}_sorted.bam"
+done
+
+#samtools view: samtools view converts SAM file to BAM format.
+#-S -b "$file": -s tells samtools that the input is in SAM format. -b tells that the output should be in BAM format. "$file" is the name of the current .sam file in the loop.
+#samtools sort: sorts the BAM file by genomic coordinates.
+#"${file%.sam}: strips off the .sam extension
+#then _sorted.bam is added.
+## sort: This samtools subcommand is used to sort the alignment data based on genomic coordinates.
+#Sorting necessary for BAM file indexing, downstream analysis, visualization, duplicate marking.
+## Deactivate the conda environment
+
+conda deactivate 
+
+#################################################################################################################################################################
+
+### Mark Duplicate
+# Its is the process of finding and labeling copies of the same DNA  airse during PCR amplification so they don’t affect the results.
+# Tools-GATK4 ( link )
+
+conda activate gatk4
+
+gatk MarkDuplicates -I BEN_NW_10_sorted_reads.bam -O BEN_NW_10_deduplicated.bam -M BEN_NW_10_duplication_metrics.txt --REMOVE_DUPLICATES true
+
+## Marking and removing duplicates all at once- we will use parallel command because of small group size and small files. 
+## However this is memory intensive and computers can crash if run by big groups on heavy files
+
+
+for file in *_sorted.bam; do
+    base=${file%_sorted.bam}
+    gatk MarkDuplicates \
+        -I "$file" \
+        -O "${base}_deduplicated.bam" \
+        -M "${base}_duplication_metrics.txt" \
+        --REMOVE_DUPLICATES true
+done
+
+#files would be viewed as BEN_NW_10_sorted_reads.bam
+#base=${file%_sorted.bam}: ${file%_sorted.bam} removes _sorted.bam from the filename.
+#-I "$file": takes the input *_sorted.bam file
+#-O "${base}_deduplicated.bam" \: outputs the deduplicated BAM (with duplicates removed).
+#-M "${base}_duplication_metrics.txt": writes duplication statistics to this file.
+#--REMOVE_DUPLICATES true: removes the duplicate reads instead of just marking them.
+
+######################################################################################################################################################################
+
+### Indexing 
+
+samtools index BEN_NW_10_sorted.bam
+
+# indexing allows quick access to specific genomic regions and improve performance of downstream analysis tools
+
+## Indexing the deduplicated files all at once
+
+samtools index *_deduplicated.bam
+
+###Statistical files-## This will generate a statistics file which will have information about the number of reads that mapped to the reference geome, number of unmapped reads etc.
+
+parallel 'samtools stats {} > {.}_stats.txt' ::: *_sorted.bam
+
+## for estimating sequencing statistics like coverage per chromosome/scaffold
+## Tool-qualimap (link)
+
+qualimap bamqc -bam BEN_NW12_aligned_reads_sorted_sorted.bam -outdir qualimap_results -outformat HTML
+
+#For bulk statistics
+
+qualimap bamqc -bam *_aligned_reads_sorted_sorted.bam -outdir qualimap_results -outformat HTML
+
+#-bam : to input bam file
+#-outdir : Directory for results
+#-outformat HTML :  Output in HTML 
+
+cd qualimap_results
+
+# Look for a section Chromosome-wise coverage” or similar
+
+cat genome_results.txt
+
+################################################################################################################################################
+### Variant filtering
+#The process of selecting high-confidence genetic variants by removing those with low quality scores, low read depth, or other signs of being sequencing errors or artifacts.
+# Download the vcf file to be used from https://zenodo.org/records/15173226
+# Tools-bcftools (link)
+
+#1) Filtering passed from non passed
+bcftools --version (# this is confirmatory step)
+
+conda activate bioinfo
+
+bcftools view -f PASS -o passed_variants.vcf.gz "input_file_name".vcf.gz
+
+#bcftools: Calls the bcftools program, a widely used tool for processing VCF/BCF files.
+#view: Opens and processes the VCF file.
+#-f PASS: Filters out variants and keeps only those with "PASS" in the FILTER column.
+#-o: passed_variants.vcf.gz	Specifies the output file name where filtered variants will be saved.
+#"input_file_name".vcf.gz: The name of the input compressed VCF file containing variant calls.
+
+##################################################################################################################################################
