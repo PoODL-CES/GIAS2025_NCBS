@@ -9,12 +9,12 @@ Line 4: AAFFFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJFJJJJJJJJJJFJJJJJJJJJJ
 
 ## ASCII-(American Standard Code for Information Interchange) define Phred Quality Score (Q score) corresponding to each base in the sequence.
 ## Phred Quality Score (Q score)=−10log10(P), The Phred quality score is a measure used to indicate the accuracy of a base call in DNA sequencing.
-## ASSCII & corrosponding score-https://www.ascii-code.com/
+## ASSCII & corrosponding score: https://www.ascii-code.com/
 
 ### Processsing of the Fastq files 
 # Remove low-quality reads -fastqc
 # Trim adapters -trimgalore
-# Assess Base Quality-fastqc
+# Assess Base Quality-fastqc (https://mugenomicscore.missouri.edu/PDF/FastQC_Manual.pdf)
 
 ###################################################################################################################################################################
 
@@ -28,6 +28,8 @@ for file in *\?download=1; do
     newname=$(echo "$file" | sed "s/?download=1//")
     mv "$file" "$newname"
 done
+
+# * is a wild card. This command will run all the files name with .fq.gz
 
 ### Install conda (https://docs.anaconda.com/miniconda/install/) (conda-is a package management software & environment, It will help to create different environment for variety of tools )
 
@@ -44,18 +46,13 @@ source ~/miniconda3/bin/activate
 ## To initialize conda on all available shells, run the following command:
 miniconda3/bin/./conda init --all
 
-### Install fastqc
-conda create -n fastqc -c bioconda fastqc
-#conda create: creats a new conda environment. Conda environments are isolated environments that allows to manage dependencies and packages for specific projects without affecting the global setup.
-#-n: short for --name. (here it would be fastqc).
-#-c: specifices the channel used to download packages (here we are getting fastqc packages in the bioconda channel).
-#fastqc: name of the package or the tool we are installing in the new environment. Used for quality control of sequencing data.
-
 ## Activate the conda environment
 conda activate fastqc
+
+#fastqc: name of the package or the tool we are installing in the new environment. Used for quality control of sequencing data. (https://mugenomicscore.missouri.edu/PDF/FastQC_Manual.pdf)
+
 ## run fastqc
 fastqc *.fq.gz
-# * is a wild card. This command will run all the files name with .fq.gz
 
 ## Output files generated after running fastqc = "BEN_CI16_sub_1_fastqc.zip" and "BEN_CI16_sub_1_fastqc.html".
 # .html file includes visualisations and details about the quality metrics of the sequencing data.
@@ -80,11 +77,9 @@ conda deactivate fastqc
 ### Trimming 
 ## Trimming refers to cleaning your raw sequencing reads before mapping. This step removes:adapters, low quality bases, and too short reads
 
-#### Install trim_galore
-conda create -n trim-galore -c bioconda trim-galore
-
 ## activate the conda environment
 conda activate trim-galore
+(https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md)
 
 trim_galore --paired --illumina BEN_CI16_sub_1.fq.gz BEN_CI16_sub_2.fq.gz
 
@@ -128,10 +123,9 @@ conda deactivate trim-galore
 # Map trimmed reads using bwa mem.
 # BWA (Burrows-Wheeler Aligner) — it's a fast and memory-efficient tool used to align short DNA sequencing reads to a reference genome.
 
-### Install bwa
-conda create -n bwa -c bioconda bwa
 ## Activate the conda environment
 conda activate bwa
+(https://hcc.unl.edu/docs/applications/app_specific/bioinformatics_tools/alignment_tools/bwa/running_bwa_commands/)
 
 ## for single file 
 
@@ -162,7 +156,7 @@ conda deactivate
 # Indexing is the process of pre-processing a reference genome to create special helper files that allow fast searching and alignment of reads. 
 
 conda activate samtools
-
+(https://www.htslib.org/doc/samtools.html)
 samtools view -S -b BEN_NW_10_aligned_reads.sam | samtools sort -o BEN_NW_10_sorted_reads.bam
 
 ## view: This is the subcommand in samtools used to convert, filter, or view alignment files.
@@ -193,6 +187,7 @@ conda deactivate
 # Tools-GATK4 ( link )
 
 conda activate gatk4
+(https://gatk.broadinstitute.org/hc/en-us/articles/360036194592-Getting-started-with-GATK4)
 
 gatk MarkDuplicates -I BEN_NW_10_sorted_reads.bam -O BEN_NW_10_deduplicated.bam -M BEN_NW_10_duplication_metrics.txt --REMOVE_DUPLICATES true
 
@@ -261,6 +256,8 @@ cat genome_results.txt
 bcftools --version (# this is confirmatory step)
 
 conda activate bioinfo
+
+(https://samtools.github.io/bcftools/bcftools.html)
 
 bcftools view -f PASS -o passed_variants.vcf.gz "input_file_name".vcf.gz
 
