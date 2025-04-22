@@ -124,12 +124,12 @@ conda deactivate
 conda activate gatk4
 
 
-for file in *_sorted.bam; do
-    base=${file%_sorted.bam}
+for file in output_files/*_sorted.bam; do
+    base=$(basename "$file" _sorted.bam)
     gatk MarkDuplicates \
         -I "$file" \
-        -O "${base}_deduplicated.bam" \
-        -M "${base}_duplication_metrics.txt" \
+        -O "output_files/${base}_deduplicated.bam" \
+        -M "output_files/${base}_duplication_metrics.txt" \
         --REMOVE_DUPLICATES true
 done
 
@@ -151,7 +151,9 @@ conda deactivate
 
 ## Indexing the deduplicated files all at once
 
-samtools index *_deduplicated.bam
+conda activate samtools
+
+samtools index output_files/*_deduplicated.bam
 
 ## for estimating sequencing statistics like coverage per chromosome/scaffold
 ## Tool-qualimap (http://qualimap.conesalab.org/)
