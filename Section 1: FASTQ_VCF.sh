@@ -195,7 +195,7 @@ conda activate strelka
 
 # For joint variant calling using all samples
 
-    /home/gias3/miniconda3/envs/strelka/bin/configureStrelkaGermlineWorkflow.py \
+    configureStrelkaGermlineWorkflow.py \
         --bam  output_files/BEN_NW13_aligned_reads_deduplicated.bam \
         --bam output_files/LGS1_aligned_reads_deduplicated.bam \
         --referenceFasta input_files/GCA_021130815.1_PanTigT.MC.v3_genomic.fna \
@@ -205,7 +205,7 @@ conda activate strelka
 
     #-m local: Specifies that the workflow will be executed on the local machine.
     #-j 8: Defines the number of parallel threads (CPUs) to use. 
-
+conda deactivate
 
 
 ##################################################################################################################################################
