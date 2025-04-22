@@ -35,9 +35,13 @@ Download Here: [https://zenodo.org/uploads/15259681]
 ###  Linux Shell Basics
 
 - Beginner: [Basic Linux Commands](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics.sh)
-- Advanced :[Advanced Linux Commands](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced.sh)
+            [Linux Basics Solutions](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics_solutions.sh)
 
-### Linux tutorial
+- Advanced :[Advanced Linux Commands](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced.sh)
+            [Linux Advanced Solutions](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced_solutions.sh)
+
+
+### More about Linux
 
 - [Linux Tutorial](https://ryanstutorials.net/linuxtutorial/navigation.php)
 
