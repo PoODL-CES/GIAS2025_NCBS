@@ -20,6 +20,11 @@ By the end of this workshop, you will be able to:
 
 - Basic knowledge of Linux commands
   - Check the file `Understand Linux commands` provided in the resources
+ 
+- Dataset Download Instructions:
+
+We’ll be using real WGS resequencing data for this workshop. The dataset is a small subset for demonstration purposes. 
+Download Here: [https://zenodo.org/uploads/15259681]
 
 ## Recommended Resources
 
