@@ -8,13 +8,13 @@ By the end of this workshop, you will be able to:
 1. Understand and process raw sequencing data (FASTQ format)
 2. Perform quality control and preprocessing
 3. Map reads to a reference genome
-4. Call and filter variants (SNPs and indels)
-5. Use filtered VCFs for population structure analysis (PCA, Admixture)
+4. IDentify variants (SNPs and indels)
+5. Use filtered variants for basic population genetic analysis (PCA, Admixture, heterozygosity)
 
 
 ## Pre-requisites & Setup
 
-- Access to a Unix/Linux shell environment  
+- Access to a Unix/Linux shell environment. For  
   - Windows: Install [MobaXterm](https://mobaxterm.mobatek.net)  
   - Mac/Linux: Use native terminal  
 
