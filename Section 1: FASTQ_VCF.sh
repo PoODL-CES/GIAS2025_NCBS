@@ -20,7 +20,7 @@ Line 4: AAFFFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJFJJJJJJJJJJFJJJJJJJJJJ
 
 ### For fastq files use zenodo link: https://zenodo.org/records/14258052
 
-wget link of the file 
+wget "link of the file" 
 
 # Downloaded file will look like this 'BEN_CI18_sub_1.fq.gz?download=1'. Change the name of the file by running this below commamnd. The final file would be look like this BEN_CI18_sub_1_fastqc.zip
 
