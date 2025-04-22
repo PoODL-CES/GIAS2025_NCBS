@@ -14,7 +14,7 @@ By the end of this workshop, you will be able to:
 
 ## Pre-requisites & Setup
 
-- Access to a Unix/Linux shell environment. For  
+- Access to a Unix/Linux shell environment. Do the following:
   - Windows: Install [MobaXterm](https://mobaxterm.mobatek.net)  
   - Mac/Linux: Use native terminal  
 
