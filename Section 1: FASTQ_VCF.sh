@@ -35,15 +35,8 @@ conda deactivate fastqc
 conda activate trim-galore
 (https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md)
 
-trim_galore --paired --illumina BEN_CI16_sub_1.fq.gz BEN_CI16_sub_2.fq.gz
-
 #trim_galore: executes Trim Galore tool. it has two tools; Cutadapt (for adapter trimming) and FastQC (for QC checks)
 #--paired: specifies input files are paired-end reads (DNA fragment is sequenced from both ends, producing two reads per fragment).
-
-#you will get "BEN_CI16_sub_1.fq.gz_trimming_report.txt" and "BEN_CI16_sub_2.fq.gz_trimming_report.txt" as the output.
-
-less BEN_CI16_sub_2.fq.gz_trimming_report.txt # less-to view the .txt file
-
 
 ###  trimming all file named as fq.gz use the following command
 
