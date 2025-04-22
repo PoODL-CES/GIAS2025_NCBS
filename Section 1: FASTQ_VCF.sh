@@ -18,33 +18,6 @@ Line 4: AAFFFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJFJJJJJJJJJJFJJJJJJJJJJ
 
 ###################################################################################################################################################################
 
-### For fastq files use zenodo link: https://zenodo.org/records/14258052
-
-wget "link of the file" 
-
-# Downloaded file will look like this 'BEN_CI18_sub_1.fq.gz?download=1'. Change the name of the file by running this below commamnd. The final file would be look like this BEN_CI18_sub_1_fastqc.zip
-
-for file in *\?download=1; do
-    newname=$(echo "$file" | sed "s/?download=1//")
-    mv "$file" "$newname"
-done
-
-# * is a wild card. This command will run all the files name with .fq.gz
-
-### Install conda (https://docs.anaconda.com/miniconda/install/) (conda-is a package management software & environment, It will help to create different environment for variety of tools )
-
-mkdir -p ~/miniconda3 
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm ~/miniconda3/miniconda.sh
-
-## This command will create a directry name as miniconda and then it will download the miniconda installer script and it will removes the installer script after installation.
-
-## After installing, close and reopen your terminal application or refresh it by running the following command:
-source ~/miniconda3/bin/activate
-
-## To initialize conda on all available shells, run the following command:
-miniconda3/bin/./conda init --all
 
 ## Activate the conda environment
 conda activate fastqc
