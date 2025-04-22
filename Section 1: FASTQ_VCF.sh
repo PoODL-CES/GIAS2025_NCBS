@@ -194,6 +194,9 @@ for bam in *_aligned_reads_sorted_deduplicated.bam; do  # loops through the requ
     
     mkdir -p "$output_dir"  # make a directory with the sample name extracted in the above steps
 
+    
+  #######  (Yet to be completed )####
+
 
 
 
