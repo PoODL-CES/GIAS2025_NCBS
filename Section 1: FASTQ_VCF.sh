@@ -155,13 +155,16 @@ conda activate samtools
 
 samtools index output_files/*_deduplicated.bam
 
+conda deactivate
+
 ## for estimating sequencing statistics like coverage per chromosome/scaffold
 ## Tool-qualimap (http://qualimap.conesalab.org/)
 
+conda activate qualimap
 
 #For generating statistics for all files 
 
-qualimap bamqc -bam *_aligned_reads_sorted_sorted.bam -outdir qualimap_results -outformat HTML
+qualimap bamqc -bam output_files/*_deduplicated.bam -outdir qualimap_results -outformat HTML
 
 #-bam : to input bam file
 #-outdir : Directory for results
