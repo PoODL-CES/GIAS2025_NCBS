@@ -74,14 +74,9 @@ conda deactivate trim-galore
 conda activate bwa
 (https://hcc.unl.edu/docs/applications/app_specific/bioinformatics_tools/alignment_tools/bwa/running_bwa_commands/)
 
-## for single file 
-
-bwa mem GCA_021130815.1_PanTigT.MC.v3_genomic.fna BEN_NW10_sub_1_val_1.fq.gz BEN_NW10_sub_2_val_2.fq.gz > BEN_NW_10_aligned_reads.sam
-
 #bwa mem: runs the "mem" algorithm of BWA and give SAM (Sequence Alignment/Map format) as a output file. It is optimum for 70bp-1Mbp reads, and commonly used for Illumina short-read data.
 #GCA_021130815.1_PanTigT.MC.v3_genomic.fna: reference genome in FASTA format. The bwa index file should also be present.
-#../fq_files/BEN_NW10_sub_1_val_1.fq.gz ../fq_files/BEN_NW10_sub_2_val_2.fq.gz: These are the paired-end FASTQ files.
-#> BEN_NW_10_aligned_reads.sam: SAM file alignment output. It contains detailed alignment information for each read.
+#../fq_files/BEN_NW13_sub_1_val_1.fq.gz ../fq_files/BEN_NW13_sub_2_val_2.fq.gz: These are the paired-end FASTQ files.
 
 # Mapping all reads to reference genome in single step
 
@@ -91,26 +86,21 @@ for file1 in *_sub_1_val_1.fq.gz; do
     
     bwa mem GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "${sample_name}_aligned_reads.sam"
 done
+
 #for file1 in *_sub_1_val_1.fq.gz; do: looks through all the read 1(forward) FASTQ files.
 #file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}: constructs the corresponding read 2 (reverse) file name by replacing _sub_1_val_1.fq.gz with _sub_2_val_2.fq.gz in file1.
-#sample_name=$(basename "$file1" _sub_1_val_1.fq.gz): removes the _sub_1_val_1.fq.gz part from the filename, leaving just the sample ID (e.g., BEN_NW10).
+#sample_name=$(basename "$file1" _sub_1_val_1.fq.gz): removes the _sub_1_val_1.fq.gz part from the filename, leaving just the sample ID (e.g., BEN_NW13).
 # bwa mem GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "${sample_name}_aligned_reads.sam": runs the actual alignment
+#> BEN_NW_13_aligned_reads.sam: SAM file alignment output. It contains detailed alignment information for each read.
+
 
 ## Deactivate the conda environment
 conda deactivate
 
-### Convert sam to bam by samtools (Link). Binary Alignment/Map. Converting SAM files to BAM is an essential step for downstream analysis because it is compressed, and indexed that speed up the analysis.
-# Indexing is the process of pre-processing a reference genome to create special helper files that allow fast searching and alignment of reads. 
+### Convert sam to bam by samtools  (https://www.htslib.org/doc/samtools.html) and sort the read. 
+# BAM-Binary Alignment/Map. Converting SAM files to BAM is an essential step for downstream analysis because it is compressed,can be indexed and more efficient for downstream analysis.  
 
 conda activate samtools
-(https://www.htslib.org/doc/samtools.html)
-samtools view -S -b BEN_NW_10_aligned_reads.sam | samtools sort -o BEN_NW_10_sorted_reads.bam
-
-## view: This is the subcommand in samtools used to convert, filter, or view alignment files.
-## -S: Specifies that the input file is in SAM (Sequence AlignmentMap) format.
-## -b: Specifies that the output file should be in BAM (Binary Alignment Map) format, which is a compressed version of the SAM format.
-
-Convert all sam files to bam and sort the reads
 
 for file in *.sam; do 
     samtools view -S -b "$file" | samtools sort -o "${file%.sam}_sorted.bam"
