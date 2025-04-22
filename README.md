@@ -29,8 +29,8 @@ By the end of this workshop, you will be able to:
 
 ###  Linux Shell Basics
 
-- Beginner: `Linux_basics.sh`, `Linux_basics_solutions.sh`
-- Advanced: `Linux_advanced.sh`, `Linux_advanced_solutions.sh`
+- Beginner: `Linux_basics.sh`, `Linux_basics_solutions.sh` (https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics.sh)
+- Advanced: `Linux_advanced.sh`, `Linux_advanced_solutions.sh` (https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced.sh)
 
 
 ## Workflow Overview
