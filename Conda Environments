@@ -1,0 +1,39 @@
+### All the Conda environments 
+# conda create -n fastqc -c bioconda fastqc
+
+FastQC is a quality control tool for high-throughput sequencing data.
+
+# conda create -n trim-galore -c bioconda trim-galore
+Trim Galore is a wrapper tool for quality and adapter trimming of FASTQ files. Trimmomatic  as common alternatives.
+
+# conda create -n bwa -c bioconda bwa
+BWA (Burrows-Wheeler Aligner) is a fast and efficient tool for aligning sequencing reads to a reference genome, with Bowtie2 as a common alternative.
+
+# conda create -n samtools -c bioconda samtools
+Samtools is a suite of programs for manipulating high-throughput sequencing data in SAM/BAM/CRAM formats.
+
+# conda create -n gatk4 -c bioconda gatk4
+GATK4 (Genome Analysis Toolkit v4) is a powerful toolkit for variant discovery in high-throughput sequencing data.
+
+# conda install -c bioconda qualimap
+Qualimap is a tool for evaluating the quality of sequencing alignment data.
+
+# conda install -c bioconda bcftools
+BCFtools is a set of utilities for processing and analyzing VCF and BCF files.
+
+# conda create -n vcftools -c bioconda vcftools
+VCFtools is a program suite for working with VCF files, enabling filtering, summarizing.
+
+# conda create -n r_env r-base
+The R conda environment provides a setup for running the R programming language and its packages.
+
+# conda create -n ggplot2 -c conda-forge r-ggplot2
+ggplot2 is a popular R package for data visualization based on the grammar of graphics.
+
+# conda activate plink
+PLINK is a toolset for whole-genome association studies.
+
+# conda activate Strelka
+Strelka is a high-performance variant calling tool for small variants in next-generation sequencing data.
+
+
