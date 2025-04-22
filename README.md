@@ -22,11 +22,11 @@ By the end of this workshop, you will be able to:
   - Check the file `Understand_Linux_commands` provided in the resources  
 
 - Conda Environment Setup  
-  - To make things easier during the workshop, we have pre-downloaded the required conda environments for you. A file named `Conda_Environments` is included in the repository. It lists all the environments used during the sessions.
+  - To make things easier during the workshop, we have pre-installed the required conda environments for you. A file named `Conda_Environments` is included in the repository. It lists all the environments used during the sessions.
 
 ## Recommended Resources
 
-###  Learn About Sequencing
+###  Learn About Illumina Sequencing
 
 - [How Illumina Sequencing Works](https://www.youtube.com/watch?v=fCd6B5HRaZ8&t=238s)
 
@@ -51,16 +51,17 @@ By the end of this workshop, you will be able to:
 | Step | Tool(s) | Output |
 |------|---------|--------|
 | Quality Check | `FastQC` | QC reports |
-| Trimming (optional) | `Trim-galore`, `Trimmomatic` | Cleaned FASTQ |
-| Alignment | `BWA`, `Bowtie2` | SAM/BAM |
+| Trimming | `Trim-galore` | Cleaned FASTQ |
+| Alignment | `BWA`| SAM/BAM |
 | Post-processing | `SAMtools`, `Picard` | Sorted, deduped BAM |
-| Variant Calling | `bcftools`, `GATK` | Raw VCF |
-| Filtering | `bcftools`, `vcftools` | Filtered VCF |
+| Variant Calling |  `Strelka` | Raw VCF |
+| Filtering (not discussed) |  `vcftools` , `bcftools`| Filtered VCF |
 
-### 2. VCF to Population Genetics
+
+### 2. Population Genetics
 
 | Step | Tool(s) | Output |
 |------|---------|--------|
-| Convert VCF to PLINK format | `plink`, `vcftools` | `.bed/.bim/.fam` |
+| Convert VCF to PLINK format (skipped) | `plink`, `vcftools` | `.bed/.bim/.fam` |
 | PCA (Principal Component Analysis) | `plink` | PCA plot |
 | Admixture Analysis | `ADMIXTURE` | Ancestry proportions |
