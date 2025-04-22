@@ -1,4 +1,5 @@
 ### Download the files BEN_CI16_sub_1.fq.gz BEN_CI16_sub_2.fq.gz BEN_NW13_sub_1.fq.gz BEN_NW13_sub_2.fq.gz
+
 ### conda environment-https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
 ## Activate the conda environment
