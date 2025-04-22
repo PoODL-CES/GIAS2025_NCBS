@@ -19,10 +19,10 @@ By the end of this workshop, you will be able to:
   - Mac/Linux: Use native terminal  
 
 - Basic knowledge of Linux commands  
-  - Check the file `Understand Linux commands` provided in the resources  
+  - Check the file `Understand_Linux_commands` provided in the resources  
 
 - Conda Environment Setup  
-  - To make things easier during the workshop, we have pre-downloaded the required conda environments for you. A file named `Conda Environments` is included in the repository. It lists all the environments used during the sessions.
+  - To make things easier during the workshop, we have pre-downloaded the required conda environments for you. A file named `Conda_Environments` is included in the repository. It lists all the environments used during the sessions.
 
 ## Recommended Resources
 
