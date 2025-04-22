@@ -77,12 +77,12 @@ conda activate bwa
 
 # Mapping all reads to reference genome in single step
 
-for file1 in output_files/*_sub_1_val_1.fq.gz; do
+for file1 in output_files/trimming_output/*_sub_1_val_1.fq.gz; do
     file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}
     sample_name=$(basename "$file1" _sub_1_val_1.fq.gz)
 
     bwa mem input_files/GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "output_files/${sample_name}_aligned_reads.sam"
-done 
+done
 
 #for file1 in *_sub_1_val_1.fq.gz; do: looks through all the read 1(forward) FASTQ files.
 #file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}: constructs the corresponding read 2 (reverse) file name by replacing _sub_1_val_1.fq.gz with _sub_2_val_2.fq.gz in file1.
