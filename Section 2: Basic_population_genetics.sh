@@ -20,7 +20,7 @@ conda deactivate
 #eigenvalues and eigenvectors would be created
 
 #to plot the PCA we will use R (https://www.r-project.org)
-conda create -n r-ggplot2 -c conda-forge r-ggplot2
+conda activate r-ggplot2 
 
 R
 library(ggplot2)
