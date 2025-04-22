@@ -113,23 +113,15 @@ done
 #then _sorted.bam is added.
 ## sort: This samtools subcommand is used to sort the alignment data based on genomic coordinates.
 #Sorting necessary for BAM file indexing, downstream analysis, visualization, duplicate marking.
-## Deactivate the conda environment
 
+## Deactivate the conda environment
 conda deactivate 
 
 #################################################################################################################################################################
 
 ### Mark Duplicate
-# Its is the process of finding and labeling copies of the same DNA  airse during PCR amplification so they don’t affect the results.
-# Tools-GATK4 ( link )
-
-conda activate gatk4
-(https://gatk.broadinstitute.org/hc/en-us/articles/360036194592-Getting-started-with-GATK4)
-
-gatk MarkDuplicates -I BEN_NW_10_sorted_reads.bam -O BEN_NW_10_deduplicated.bam -M BEN_NW_10_duplication_metrics.txt --REMOVE_DUPLICATES true
-
-## Marking and removing duplicates all at once- we will use parallel command because of small group size and small files. 
-## However this is memory intensive and computers can crash if run by big groups on heavy files
+# Its is the process of finding and labeling copies of the same DNA  which arise during PCR amplification.
+# Tools-GATK4 ( https://gatk.broadinstitute.org/hc/en-us/articles/360036194592-Getting-started-with-GATK4)
 
 
 for file in *_sorted.bam; do
@@ -141,18 +133,19 @@ for file in *_sorted.bam; do
         --REMOVE_DUPLICATES true
 done
 
-#files would be viewed as BEN_NW_10_sorted_reads.bam
+#files would be viewed as BEN_NW_13_sorted_reads.bam
 #base=${file%_sorted.bam}: ${file%_sorted.bam} removes _sorted.bam from the filename.
 #-I "$file": takes the input *_sorted.bam file
 #-O "${base}_deduplicated.bam" \: outputs the deduplicated BAM (with duplicates removed).
 #-M "${base}_duplication_metrics.txt": writes duplication statistics to this file.
 #--REMOVE_DUPLICATES true: removes the duplicate reads instead of just marking them.
 
+## Deactivate the conda environment
+conda deactivate 
+
 ######################################################################################################################################################################
 
 ### Indexing 
-
-samtools index BEN_NW_10_sorted.bam
 
 # indexing allows quick access to specific genomic regions and improve performance of downstream analysis tools
 
@@ -160,16 +153,11 @@ samtools index BEN_NW_10_sorted.bam
 
 samtools index *_deduplicated.bam
 
-###Statistical files-## This will generate a statistics file which will have information about the number of reads that mapped to the reference geome, number of unmapped reads etc.
-
-parallel 'samtools stats {} > {.}_stats.txt' ::: *_sorted.bam
-
 ## for estimating sequencing statistics like coverage per chromosome/scaffold
 ## Tool-qualimap (link)
 
-qualimap bamqc -bam BEN_NW12_aligned_reads_sorted_sorted.bam -outdir qualimap_results -outformat HTML
 
-#For bulk statistics
+#For generating statistics for all files 
 
 qualimap bamqc -bam *_aligned_reads_sorted_sorted.bam -outdir qualimap_results -outformat HTML
 
