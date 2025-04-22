@@ -90,3 +90,11 @@ done
 #input_file_K2.log: Log file with convergence and likelihood info
 
 #same pattern for K=3 and K=4
+
+
+#For Heterozygosity
+conda activate rtg-tools
+rtg vcfstats machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.recode.vcf.gz > /home/gias3/admin/output_files/machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.vcfstats
+conda deactivate
+
+#rtg vcfstats ... > /home/gias3/admin/output_files/... : Run vcfstats to generate statistics from the VCF file and save the results to the specified output directory
