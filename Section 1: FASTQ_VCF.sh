@@ -44,8 +44,6 @@ trim_galore --paired --illumina BEN_CI16_sub_1.fq.gz BEN_CI16_sub_2.fq.gz
 
 less BEN_CI16_sub_2.fq.gz_trimming_report.txt # less-to view the .txt file
 
-## triming for single fasta file
-trim_galore --fastqc BEN_CI16_sub_1.fq.gz
 
 ###  trimming all file named as fq.gz use the following command
 
