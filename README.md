@@ -22,7 +22,7 @@ By the end of this workshop, you will be able to:
   - Check the file `Understand_Linux_commands` provided in the resources  
 
 - Conda Environment Setup  
-  - To make things easier during the workshop, we have pre-installed the required conda environments for you. A file named `Conda_Environments` is included in the repository. It lists all the environments used during the sessions.
+  - To make things easier during the workshop, we have pre-installed the required conda environments for you. A file named [`Conda_Environments`](https://github.com/PoODL-CES/GIAS2025_NCBS/blob/main/Conda_Environments) is included in the repository. It lists all the environments used during the sessions.
 
 ## Recommended Resources
 
