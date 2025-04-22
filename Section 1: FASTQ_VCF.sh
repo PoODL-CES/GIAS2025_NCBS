@@ -22,8 +22,8 @@ fastqc *.fq.gz -o output_files
 ## Deactivate the conda environment
 conda deactivate fastqc
 
-exit #logout from the remote cluster
-scp -r gias3@172.16.222.186:path to the file or directory ~/
+## Open a new tab and download the html file to local machine to open and visualize the html file.
+scp -r gias3@172.16.222.186:~/participant_X/output_files/*.html ~/ (X=put your participant number)
 
 
 
