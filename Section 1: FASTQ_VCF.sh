@@ -2,6 +2,10 @@
 ssh gias3@172.16.222.186
 Password:gias@ncbs 
 
+## Navigate to your respective participant directories 
+
+cd participant_X/ (replace X with your participant number)
+
 
 ### conda environment-https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
@@ -11,7 +15,7 @@ conda activate fastqc
 #fastqc: name of the package or the tool we are installing in the new environment. Used for quality control of sequencing data. (https://mugenomicscore.missouri.edu/PDF/FastQC_Manual.pdf)
 
 ## run fastqc
-fastqc *.fq.gz -o output_files
+fastqc input_files/*.fq.gz -o output_files
 
 ## Output files generated after running fastqc = "BEN_CI16_sub_1_fastqc.zip" and "BEN_CI16_sub_1_fastqc.html".
 # .html file includes visualisations and details about the quality metrics of the sequencing data.
