@@ -1,0 +1,56 @@
+In this Linux cheat sheet, we will cover all the most important Linux commands, from the basics to the advanced.
+1. ls : List files and directories.
+Examples
+ls -l 
+displays files and directories with detailed information.
+ls -a 
+shows all files and directories, including.
+ls -lh 
+displays file sizes in a human-readable format.
+
+2. cd : Change directory. 
+cd /path/to/directory 
+changes the current directory to the specified path.
+
+3. pwd : print current working directory.
+Diplays the current working directory
+
+4. mkdir : Create a new directory.
+
+5. rm : remove directory 
+rm -r (delete the directory and it's contents)
+
+6. mv : move or rename the file.
+
+7. cp: copy files and directories.
+
+8. cat : To view the content of the file.
+
+9. head : To view the first few lines of the file.
+
+10. tail : To view the last few lines of the file.
+
+11. ln : creates links between files.
+
+12. find : Search for files and directory.
+
+13. chmod: Change file permissions.
+
+14. tar: Create or extract archive files.
+
+15. gzip: Compress files
+
+16. zip: Create compressed zip archives.
+
+17. ssh: securely connect to remote server.
+ssh user@hostname 
+initiates an SSH connection to the specified hostname.
+
+18. scp : Securely copy files between hosts.	
+scp file.txt user@hostname:/path/to/destination 
+securely copies “file.txt” to the specified remote host.
+
+19. wget : Download files from the web
+wget http://example.com/file.txt \
+downloads “file.txt” from the specified URL.
+
