@@ -55,13 +55,13 @@ By the end of this workshop, you will be able to:
 | Alignment | `BWA`| SAM/BAM |
 | Post-processing | `SAMtools`, `Picard` | Sorted, deduped BAM |
 | Variant Calling |  `Strelka` | Raw VCF |
-| Filtering (not discussed) |  `vcftools` , `bcftools`| Filtered VCF |
+| Filtering (not demonstrated here) |  `vcftools` , `bcftools`| Filtered VCF |
 
 
 ### 2. Population Genetics
 
 | Step | Tool(s) | Output |
 |------|---------|--------|
-| Convert VCF to PLINK format (skipped) | `plink`, `vcftools` | `.bed/.bim/.fam` |
+| Convert VCF to PLINK format (not demonstrated here) | `plink`, `vcftools` | `.bed/.bim/.fam` |
 | PCA (Principal Component Analysis) | `plink` | PCA plot |
 | Admixture Analysis | `ADMIXTURE` | Ancestry proportions |
