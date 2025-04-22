@@ -50,3 +50,37 @@ scp username@IP_address:~/"path to the file on the remote cluster"/pca_plot.png 
 #scp: secure copy protocol; copies files betweeen a local and a remote computer.
 # .: destination on the local machine. copies to the current directory.
 #pca_plot.png and Rplots.pdf would be saved in your local home directory
+
+
+#Admixture
+
+conda activate admixture
+
+INPUT_DIR="/home/gias3/admin/input_files"
+OUTPUT_DIR="/home/gias3/admin/output_files"
+INPUT_PREFIX="machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB"
+
+mkdir -p "$output_files"
+
+for K in {2..4}
+do 
+  admixture "$INPUT_DIR/$INPUT_PREFIX.bed" $K --out "$OUTPUT_DIR/${INPUT_PREFIX}_K${K}"
+done
+
+
+#for K in {2..4}: loops through the values 2, 3, and 4
+#INPUT_DIR: specifies the location of input directory
+#OUTPUT_DIR: specifies the location of output directory
+#INPUT_PREFIX: base name of the PLINK file (without the .bed/.bim/.fam extension).
+#for K in {2..4}: runs the simulation for 2 to 4 ancestral populations
+#${K}: number of ancestral populations we are trying to estimate (2 to 4 in this case)
+
+#output would be as follows:
+
+#for K=2;
+
+#input_file_K2.Q: Q matrix (individual ancestry populations)
+#input_file_K2.P: P matrix (ancestral allele frequencies)
+#input_file_K2.log: Log file with convergence and likelihood info
+
+#same pattern for K=3 and K=4
