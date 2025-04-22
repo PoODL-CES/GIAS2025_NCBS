@@ -25,7 +25,7 @@ conda activate r-ggplot2
 R
 library(ggplot2)
 # Read in the PCA data
-eigenvec_data <- read.table("machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.pca", header=FALSE)
+eigenvec_data <- read.table("machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.eigenvec", header=FALSE)
 
 # Add column names (FID, IID, Geographic Region, PCs)
 colnames(eigenvec_data) <- c("FID", "IID", "Region", paste0("PC", 1:5))
