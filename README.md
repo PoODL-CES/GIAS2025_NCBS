@@ -33,7 +33,7 @@ By the end of this workshop, you will be able to:
 ###  Linux Shell Basics
 
 - Beginner: [Basic Linux Commands Exercise](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics.sh) \
-            [Basic Linux Commands Solutions](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics_solutions.sh)
+            - [Basic Linux Commands Solutions](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics_solutions.sh)
 
 - Advanced :[Advanced Linux Commands Exercise](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced.sh) \
             - [Advanced Linux Commands Solutions](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced_solutions.sh)
