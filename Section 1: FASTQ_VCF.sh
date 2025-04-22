@@ -59,11 +59,6 @@ done
 #BEN_CI16_sub_1.fq.gz_trimming_report.txt (summary report generated during the trimming process)
 #BEN_CI16_sub_1_val_1.fq.gz (val_1: refers to a validated or quality-checked file. In tools like Trim Galore, files are renamed with val_1 post trimming process)
 
-# Alternative command
-for file in BEN_CI18_sub_1.fq.gz BEN_NW13_sub_1.fq.gz BEN_SI9_sub_1.fq.gz BEN_NW10_sub_1.fq.gz BEN_SI18_sub_1.fq.gz LGS1_sub_1.fq.gz BEN_NW12_sub_1.fq.gz BEN_SI19_sub_1.fq.gz; do
-    paired_file=${file/_1.fq.gz/_2.fq.gz}
-    trim_galore --paired "$file" "$paired_file"
-done
 
 ## Deactivate the conda environment
 conda deactivate trim-galore
@@ -81,7 +76,7 @@ conda activate bwa
 
 #bwa mem: runs the "mem" algorithm of BWA and give SAM (Sequence Alignment/Map format) as a output file. It is optimum for 70bp-1Mbp reads, and commonly used for Illumina short-read data.
 #GCA_021130815.1_PanTigT.MC.v3_genomic.fna: reference genome in FASTA format. The bwa index file should also be present.
-#../fq_files/BEN_NW13_sub_1_val_1.fq.gz ../fq_files/BEN_NW13_sub_2_val_2.fq.gz: These are the paired-end FASTQ files.
+#BEN_NW13_sub_1_val_1.fq.gz BEN_NW13_sub_2_val_2.fq.gz: These are the paired-end FASTQ files.
 
 # Mapping all reads to reference genome in single step
 
@@ -178,22 +173,27 @@ cat genome_results.txt
 
 conda deactivate 
 ################################################################################################################################################
-### calling vcf files
-# Tools-strelk (link)
+### Calling VCF (variant call format) files
+# We call a VCF to identify and recoord genetic variants (like SNPs and Indels) present in a sample by comparing aligned sequencing reads to a reference genome.
+# Tools-strelka (https://github.com/Illumina/strelka/blob/v2.9.x/docs/userGuide/README.md)
 
-#1) Filtering passed from non passed
-bcftools --version (# this is confirmatory step)
+conda activate strelka
 
-conda activate bioinfo
+#Strelka is run in a 2 step procedure
 
-(https://samtools.github.io/bcftools/bcftools.html)
+# Step:1 - Configuration - to specify the input data and any options pertaining to the variant calling methods themselves
+# Step:2 - Workflow Execution - to specify parameters pertaining to how strelka is executed.
 
-bcftools view -f PASS -o passed_variants.vcf.gz "input_file_name".vcf.gz
+# For multiple files: takes in bam files iteratively and performs configuration and execution steps inside the loop
 
-#bcftools: Calls the bcftools program, a widely used tool for processing VCF/BCF files.
-#view: Opens and processes the VCF file.
-#-f PASS: Filters out variants and keeps only those with "PASS" in the FILTER column.
-#-o: passed_variants.vcf.gz	Specifies the output file name where filtered variants will be saved.
-#"input_file_name".vcf.gz: The name of the input compressed VCF file containing variant calls.
+for bam in *_aligned_reads_sorted_deduplicated.bam; do  # loops through the required bam files
+    sample_name=$(basename "$bam" _aligned_reads_deduplicated.bam) # extracts the sample name from the .bam filename
+    output_dir="strelka_germline_${sample_name}" 
+    
+    mkdir -p "$output_dir"  # make a directory with the sample name extracted in the above steps
+
+
+
+
 
 ##################################################################################################################################################
