@@ -15,25 +15,22 @@ Samtools is a suite of programs for manipulating high-throughput sequencing data
 # conda create -n gatk4 -c bioconda gatk4
 GATK4 (Genome Analysis Toolkit v4) is a powerful toolkit for variant discovery in high-throughput sequencing data.
 
-# conda install -c bioconda qualimap
+# conda create -n qualimap -c bioconda qualimap
 Qualimap is a tool for evaluating the quality of sequencing alignment data.
 
-# conda install -c bioconda bcftools
+# conda create -n bcftools -c bioconda bcftools
 BCFtools is a set of utilities for processing and analyzing VCF and BCF files.
 
 # conda create -n vcftools -c bioconda vcftools
 VCFtools is a program suite for working with VCF files, enabling filtering, summarizing.
 
-# conda create -n r_env r-base
-The R conda environment provides a setup for running the R programming language and its packages.
-
-# conda create -n ggplot2 -c conda-forge r-ggplot2
+# conda create -n r-ggplot2 -c conda-forge r-ggplot2
 ggplot2 is a popular R package for data visualization based on the grammar of graphics.
 
-# conda activate plink
+# conda create -n plink -c bioconda plink
 PLINK is a toolset for whole-genome association studies.
 
-# conda activate Strelka
+# conda create -n strelka -c bioconda strelka
 Strelka is a high-performance variant calling tool for small variants in next-generation sequencing data.
 
 
