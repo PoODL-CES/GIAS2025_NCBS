@@ -45,12 +45,12 @@ conda activate trim-galore
 ###  trimming all file named as fq.gz use the following command
 
 # Use * as wildcard to consider any file with the format *_1.fq.gz as an input
-for file in input_files/_1.fq.gz; do
+for file in input_files/*_1.fq.gz
+do
   mate="${file/_1.fq.gz/_2.fq.gz}"
   trim_galore --paired "$file" "$mate" --output_dir output_files
-donefor file1 in output_files/_sub_1_val_1.fq.gz; do
-    file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}
-    sample_name=$(basename "$file1" _sub_1_val_1.fq.gz)
+done
+
 
 # "$file" refers to the current forward read (read 1).
 # ${file/_1.fq.gz/_2.fq.gz} dynamically generates the corresponding reverse read (read 2) by replacing _1 with _2 in the file name.
