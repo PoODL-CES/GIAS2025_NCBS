@@ -174,7 +174,7 @@ cd qualimap_results
 
 # Look for a section Chromosome-wise coverage” or similar
 
-cat genome_results.txt
+less genome_results.txt
 
 conda deactivate 
 ################################################################################################################################################
