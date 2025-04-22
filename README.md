@@ -21,10 +21,8 @@ By the end of this workshop, you will be able to:
 - Basic knowledge of Linux commands
   - Check the file `Understand Linux commands` provided in the resources
  
-- Dataset Download Instructions:
-
-We’ll be using real WGS resequencing data for this workshop. The dataset is a small subset for demonstration purposes. 
-Download Here: [https://zenodo.org/uploads/15259681]
+  -Conda Environment Setup
+   -To make things easier during the workshop, we have pre-downloaded the required conda environments for you. A file named conda_env_list is included in the repository. It lists all the environments used during the sessions.
 
 ## Recommended Resources
 
