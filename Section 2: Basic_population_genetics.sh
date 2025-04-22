@@ -5,24 +5,30 @@
 #.bim: tab-delimited text file with information about each SNP.
 #.fam: tab-delimited text file; contains information about each individual/sample.
 
- conda activate plink
- plink --bfile output_file \
-  --pca 10 \
-  --allow-extra-chr \
-  --out /home/gias3/admin/output_files/output_file_pca
+conda activate plink
 
-#--bfile output_file: loads the plink binary dataset previously created using --make-bed
-#--pca 10: calculates the top 10 principal components
+  plink --bfile machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB \
+  --pca 5 \
+  --allow-extra-chr \
+  --out machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB
+conda deactivate
+
+#--pca 5: calculates the top 5 principal components
 #--allow-extra-chr: allows non-standard chromosome names
 #out output_file_pca: sets the prefix for output files (example: output_file_pca.eigenval)
 #eigenvalues and eigenvectors would be created
 
+#to plot the PCA we will use R (https://www.r-project.org)
 conda activate r_env
+#we edit the .fam file with the location names from the samples
+awk '{print $1"\t"$2}' machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe0.05_mm0.6_meanDPmid95percentile_imiss0.6_noZoo.fam > geographical_location.txt
+paste geographical_location.txt machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.eigenvec > machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.pca
 R
 install.packages("ggplot2")
 library(ggplot2)      
-eigenvec_data <- read.table("output_file_pca.eigenvec", header=FALSE)
-colnames(eigenvec_data) <- c("FID", "IID", paste("PC", 1:10, sep=""))
+eigenvec_data <- read.table("machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.pca
+", header=FALSE)
+colnames(eigenvec_data) <- c("FID", "IID", paste("PC", 1:5, sep=""))
 head(eigenvec_data)
 pdf(file = paste0(output_dir, "pca_plot.pdf"))
 ggplot(eigenvec_data, aes(x=PC1, y=PC2)) +
