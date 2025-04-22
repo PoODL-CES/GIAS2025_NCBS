@@ -34,10 +34,11 @@ scp -r gias3@172.16.222.186:~/participant_X/output_files/*.html ~/ (X=put your p
 
 ### Trimming 
 ## Trimming refers to cleaning your raw sequencing reads before mapping. This step removes:adapters, low quality bases, and too short reads
+## We use Trim-galore for trimming (https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md)
 
 ## activate the conda environment
 conda activate trim-galore
-(https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md)
+
 
 #trim_galore: executes Trim Galore tool. it has two tools; Cutadapt (for adapter trimming) and FastQC (for QC checks)
 #--paired: specifies input files are paired-end reads (DNA fragment is sequenced from both ends, producing two reads per fragment).
