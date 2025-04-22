@@ -118,7 +118,7 @@ conda deactivate
 #################################################################################################################################################################
 
 ### Mark Duplicate
-# Its is the process of finding and labeling copies of the same DNA  which arise during PCR amplification.
+# It's the process of finding and labeling copies of the same DNA  which arise during PCR amplification.
 # Tools-GATK4 ( https://gatk.broadinstitute.org/hc/en-us/articles/360036194592-Getting-started-with-GATK4)
 
 conda activate gatk4
