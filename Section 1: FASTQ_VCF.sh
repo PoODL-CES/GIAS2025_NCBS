@@ -1,4 +1,8 @@
-w
+### Login credentials
+ssh gias3@172.16.222.186
+Password:gias@ncbs 
+
+
 ### conda environment-https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
 ## Activate the conda environment
@@ -172,11 +176,10 @@ cd qualimap_results
 
 cat genome_results.txt
 
+conda deactivate 
 ################################################################################################################################################
-### Variant filtering
-#The process of selecting high-confidence genetic variants by removing those with low quality scores, low read depth, or other signs of being sequencing errors or artifacts.
-# Download the vcf file to be used from https://zenodo.org/records/15173226
-# Tools-bcftools (link)
+### calling vcf files
+# Tools-strelk (link)
 
 #1) Filtering passed from non passed
 bcftools --version (# this is confirmatory step)
