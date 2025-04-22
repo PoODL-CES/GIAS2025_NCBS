@@ -14,20 +14,6 @@ By the end of this workshop, you will be able to:
 
 ## Pre-requisites & Setup
 
-- Access to a Unix/Linux shell environment
-  - Windows: Install [MobaXterm](https://mobaxterm.mobatek.net)
-  - Mac/Linux: Use native terminal
-
-- Basic knowledge of Linux commands
-  - Check the file `Understand Linux commands` provided in the resources
- 
-- Conda Environment Setup
-Sure! Here's your updated, cleanly formatted **Pre-requisites & Setup** section with everything wrapped properly:
-
----
-
-## Pre-requisites & Setup
-
 - Access to a Unix/Linux shell environment  
   - Windows: Install [MobaXterm](https://mobaxterm.mobatek.net)  
   - Mac/Linux: Use native terminal  
