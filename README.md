@@ -8,7 +8,7 @@ By the end of this workshop, you will be able to:
 1. Understand and process raw sequencing data (FASTQ format)
 2. Perform quality control and preprocessing
 3. Map reads to a reference genome
-4. IDentify variants (SNPs and indels)
+4. Identify variants (SNPs and indels)
 5. Use filtered variants for basic population genetic analysis (PCA, Admixture, heterozygosity)
 
 
