@@ -161,7 +161,9 @@ conda deactivate
 
 conda activate samtools
 
-samtools index output_files/*_deduplicated.bam
+for file in output_files/*.deduplicated.bam; do
+samtools index "$bam"
+done
 
 conda deactivate
 
