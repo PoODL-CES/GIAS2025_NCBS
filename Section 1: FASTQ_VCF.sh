@@ -24,7 +24,7 @@ fastqc input_files/*.fq.gz -o output_files
 
 
 ## Deactivate the conda environment
-conda deactivate fastqc
+conda deactivate 
 
 ## Open a new tab and download the html file to your system.
 
