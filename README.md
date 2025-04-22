@@ -65,5 +65,5 @@ By the end of this workshop, you will be able to:
 | Convert VCF to PLINK format (not demonstrated here) | `plink`, `vcftools` | `.bed/.bim/.fam` |
 | PCA (Principal Component Analysis) | `plink` | PCA plot |
 | Admixture Analysis | `ADMIXTURE` | Ancestry proportions |
-| Heterozygosity | `RTGtools` | Heterozygosity Estimation |
+| Heterozygosity | `rtg-tools` | Heterozygosity Estimation |
 
