@@ -1,4 +1,4 @@
-
+w
 ### conda environment-https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
 ## Activate the conda environment
@@ -155,7 +155,7 @@ conda deactivate
 samtools index *_deduplicated.bam
 
 ## for estimating sequencing statistics like coverage per chromosome/scaffold
-## Tool-qualimap (link)
+## Tool-qualimap (http://qualimap.conesalab.org/)
 
 
 #For generating statistics for all files 
