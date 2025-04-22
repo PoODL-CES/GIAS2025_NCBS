@@ -34,10 +34,10 @@ Download Here: [https://zenodo.org/uploads/15259681]
 
 ###  Linux Shell Basics
 
-- Beginner: [Basic Linux Commands Exercise](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics.sh)
+- Beginner: [Basic Linux Commands Exercise](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics.sh) \
             [Basic Linux Commands Solutions](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics_solutions.sh)
 
-- Advanced :[Advanced Linux Commands Exercise](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced.sh)
+- Advanced :[Advanced Linux Commands Exercise](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced.sh) \
             [Advanced Linux CommandS Solutions](https://github.com/PoODLCES/Genomics_learning_workshop/blob/main/Linux_advanced_solutions.sh)
 
 
