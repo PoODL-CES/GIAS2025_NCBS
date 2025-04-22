@@ -81,7 +81,7 @@ conda activate bwa
 
 # Mapping all reads to reference genome in single step
 
-for file1 in output_files/trimming_output/*_sub_1_val_1.fq.gz; do
+for file1 in output_files/*_sub_1_val_1.fq.gz; do
     file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}
     sample_name=$(basename "$file1" _sub_1_val_1.fq.gz)
 
@@ -193,16 +193,20 @@ conda activate strelka
 # Step:1 - Configuration - to specify the input data and any options pertaining to the variant calling methods themselves
 # Step:2 - Workflow Execution - to specify parameters pertaining to how strelka is executed.
 
-# For multiple files: takes in bam files iteratively and performs configuration and execution steps inside the loop
+# For joint variant calling using all samples
 
-for bam in *_aligned_reads_sorted_deduplicated.bam; do  # loops through the required bam files
-    sample_name=$(basename "$bam" _aligned_reads_deduplicated.bam) # extracts the sample name from the .bam filename
-    output_dir="strelka_germline_${sample_name}" 
-    
-    mkdir -p "$output_dir"  # make a directory with the sample name extracted in the above steps
+    /home/gias3/miniconda3/envs/strelka/bin/configureStrelkaGermlineWorkflow.py \
+        --bam  output_files/BEN_NW13_aligned_reads_deduplicated.bam\
+        --bam output_files/LGS1_aligned_reads_deduplicated.bam \
+        --referenceFasta input_files/GCA_021130815.1_PanTigT.MC.v3_genomic.fna \
+        --runDir output_files/strelka_output_folder                                                     # run configuration step
 
-    
-  #######  (Yet to be completed )####
+    output_files/strelka_output_folder/runWorkflow.py -m local -j 8                                      # workflow execution step
+
+    #-m local: Specifies that the workflow will be executed on the local machine.
+    #-j 8: Defines the number of parallel threads (CPUs) to use. 
+
+
 
 
 
