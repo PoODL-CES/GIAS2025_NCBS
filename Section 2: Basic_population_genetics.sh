@@ -19,25 +19,25 @@ conda deactivate
 #eigenvalues and eigenvectors would be created
 
 #to plot the PCA we will use R (https://www.r-project.org)
-conda activate r_env
-#we edit the .fam file with the location names from the samples
-awk '{print $1"\t"$2}' machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe0.05_mm0.6_meanDPmid95percentile_imiss0.6_noZoo.fam > geographical_location.txt
-paste geographical_location.txt machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.eigenvec > machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.pca
-R
-install.packages("ggplot2")
-library(ggplot2)      
-eigenvec_data <- read.table("machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.pca
-", header=FALSE)
-colnames(eigenvec_data) <- c("FID", "IID", paste("PC", 1:5, sep=""))
-head(eigenvec_data)
-pdf(file = paste0(output_dir, "pca_plot.pdf"))
-ggplot(eigenvec_data, aes(x=PC1, y=PC2)) +
-  geom_point() +
+library(ggplot2)
+
+# Read in the PCA data
+eigenvec_data <- read.table("machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB.pca", header=FALSE)
+
+# Add column names (FID, IID, Geographic Region, PCs)
+colnames(eigenvec_data) <- c("FID", "IID", "Region", paste0("PC", 1:5))
+
+# Plot
+ggplot(eigenvec_data, aes(x=PC1, y=PC2, color=Region)) +
+  geom_point(size=3, alpha=0.8) +
   labs(x="Principal Component 1", y="Principal Component 2", title="PCA Plot: PC1 vs PC2") +
-  theme_minimal()
-  dev.off()
+  theme_minimal() +
+  theme(legend.title = element_blank()) +
+  scale_color_brewer(palette = "Set2") # You can change to "Dark2", "Paired", etc.
+
+# Save plots
+ggsave("/home/gias3/admin/output_files/pca_plot.pdf")
 ggsave("/home/gias3/admin/output_files/pca_plot.png")
-q()
 
 
 scp username@IP_address:~/"path to the file on the remote cluster"/Rplots.pdf .
