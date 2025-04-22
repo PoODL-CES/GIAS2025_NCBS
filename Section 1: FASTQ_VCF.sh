@@ -18,12 +18,6 @@ fastqc *.fq.gz -o output_files
 # .gzip file includes summary of the main quality control metrics, detailed quality control data in text format, graphs and images using in .html report.
 # .gzip would have much more detailed information
 
-#for simplicity; you can transfer all the .zip files in a global zip folder and all the .html files in a global html folder.
-
-mkdir zip_files html_files #"zip_files" and "html_files" directories would be created
-mv *.zip zip_files/ #all the .zip files would be moved to "zip_files"
-mv *.html html_files/ #all the .html files would be moved to "html_files"
-#to visualize the .html files, they can be copied locally to your local computer from the remote cluster
 
 ## Deactivate the conda environment
 conda deactivate fastqc
