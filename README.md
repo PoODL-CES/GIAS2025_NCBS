@@ -32,6 +32,11 @@ By the end of this workshop, you will be able to:
 - Beginner: [Basic Linux Commands](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_basics.sh)
 - Advanced :[Advanced Linux Commands](https://github.com/PoODL-CES/Genomics_learning_workshop/blob/main/Linux_advanced.sh)
 
+### Linux tutorial
+
+- [Linux Tutorial](https://ryanstutorials.net/linuxtutorial/navigation.php)
+
+
 ## Workflow Overview
 
 ### 1. Raw Data to VCF
