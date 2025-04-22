@@ -1,23 +1,4 @@
-### What are FASTQ files and how they different form FASTA file ?
-## Fastq files are the sequencing output files files obtained after demultimplexing (sorting or separating sequencing reads based on their unique barcodes or indices) data from illumina seqeuncers. Most sequencing companies provide this file format for illumina data.
-## Structure of fastq files
-
-Line 1: @SRR15369215.126490887 #sequence identifier
-Line 2: GGACCTTCTGTCATTTCACTCCTTCTGAAGTAAGGAGTGAAGTAAACACGAAGTAAACACGACAGGTTAGTCCTATTCCTTCAAGCAGGAGTACAGAAAAGAATGCAAATTCTGGGTTCTAGCCCAGCTTTTACTCCTATGGTTCTATTT #sequence
-Line 3:+ #seperator
-Line 4: AAFFFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJFJJJJJJJJJJFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFAFJJJJJJJJJJJJJJJJFJJJJJJJJJFJJJJJJJJJFFFJJJJJJJJJJJ #base call quality scores (ASCII characters)
-
-## ASCII-(American Standard Code for Information Interchange) define Phred Quality Score (Q score) corresponding to each base in the sequence.
-## Phred Quality Score (Q score)=−10log10(P), The Phred quality score is a measure used to indicate the accuracy of a base call in DNA sequencing.
-## ASSCII & corrosponding score: https://www.ascii-code.com/
-
-### Processsing of the Fastq files 
-# Remove low-quality reads -fastqc
-# Trim adapters -trimgalore
-# Assess Base Quality-fastqc (https://mugenomicscore.missouri.edu/PDF/FastQC_Manual.pdf)
-
-###################################################################################################################################################################
-
+### conda environment-https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
 ## Activate the conda environment
 conda activate fastqc
