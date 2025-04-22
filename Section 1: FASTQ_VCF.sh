@@ -21,11 +21,13 @@ mv *.zip zip_files/ #all the .zip files would be moved to "zip_files"
 mv *.html html_files/ #all the .html files would be moved to "html_files"
 #to visualize the .html files, they can be copied locally to your local computer from the remote cluster
 
+## Deactivate the conda environment
+conda deactivate fastqc
+
 exit #logout from the remote cluster
 scp -r gias3@172.16.222.186:path to the file or directory ~/
 
-## Deactivate the conda environment
-conda deactivate fastqc
+
 
 #######################################################################################################################################################################
 
