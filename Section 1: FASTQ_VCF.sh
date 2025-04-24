@@ -50,10 +50,14 @@ conda activate trim-galore
 ###  trimming all file named as fq.gz use the following command
 
 # Use * as wildcard to consider any file with the format *_1.fq.gz as an input
+
+
 for file in input_files/*_1.fq.gz
 do
   mate="${file/_1.fq.gz/_2.fq.gz}"
-  trim_galore --paired "$file" "$mate" --output_dir output_files
+# The & at the end of the command allows the command to run all files in parallel.
+# If your system does not have enough CPU cores, remove the &
+  trim_galore --paired "$file" "$mate" --output_dir output_files &
 done
 
 
@@ -89,7 +93,7 @@ for file1 in output_files/*_sub_1_val_1.fq.gz; do
     file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}
     sample_name=$(basename "$file1" _sub_1_val_1.fq.gz)
 
-    bwa mem input_files/GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "output_files/${sample_name}_aligned_reads.sam"
+    bwa mem input_files/GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "output_files/${sample_name}_aligned_reads.sam" &
 done
 
 #for file1 in *_sub_1_val_1.fq.gz; do: looks through all the read 1(forward) FASTQ files.
