@@ -220,6 +220,8 @@ conda activate strelka
         --referenceFasta input_files/GCA_021130815.1_PanTigT.MC.v3_genomic.fna \
         --runDir output_files/strelka_output_folder                                                     # run configuration step
 
+# Set the value for -j based on the number of available computational cores
+
     output_files/strelka_output_folder/runWorkflow.py -m local -j 8                                      # workflow execution step
 
     #-m local: Specifies that the workflow will be executed on the local machine.
