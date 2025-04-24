@@ -31,7 +31,7 @@ eigenvec_data <- read.table("machali_Aligned_rangeWideMerge_strelka_update2_BENG
 colnames(eigenvec_data) <- c("FID", "IID", paste0("PC", 1:5))
 
 # Plot
-ggplot(eigenvec_data, aes(x=PC1, y=PC2, color=Region)) +
+ggplot(eigenvec_data, aes(x=PC1, y=PC2, color=IID)) +
   geom_point(size=3, alpha=0.8) +
   labs(x="Principal Component 1", y="Principal Component 2", title="PCA Plot: PC1 vs PC2") +
   theme_minimal() +
