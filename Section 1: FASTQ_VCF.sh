@@ -183,9 +183,15 @@ qualimap bamqc -bam output_files/*_deduplicated.bam -outdir output_files/qualima
 cd output_files/qualimap_results
 
 ## Open the genome_results.txt file and look for Chromosome-wise coverage and other statistics
-less genome_results.txt
+# less is used to view contents of a file one screen at a time, which is convenient for large files
 
-## Navigate back to previous directory
+less genome_results.txt 
+
+# press q to exit out from the genome_results.txt file
+
+## Navigate back to corresponding participant directory
+
+cd ../../
 
 
 conda deactivate 
