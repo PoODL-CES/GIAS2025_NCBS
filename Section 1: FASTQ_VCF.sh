@@ -173,17 +173,20 @@ conda activate qualimap
 
 #For generating statistics for all files 
 
-qualimap bamqc -bam output_files/*_deduplicated.bam -outdir qualimap_results -outformat HTML
+qualimap bamqc -bam output_files/*_deduplicated.bam -outdir output_files/qualimap_results -outformat HTML
 
 #-bam : to input bam file
 #-outdir : Directory for results
 #-outformat HTML :  Output in HTML 
 
-cd qualimap_results
+## Navigate to the results directory
+cd output_files/qualimap_results
 
-# Look for a section Chromosome-wise coverage” or similar
-
+## Open the genome_results.txt file and look for Chromosome-wise coverage and other statistics
 less genome_results.txt
+
+## Navigate back to previous directory
+
 
 conda deactivate 
 ################################################################################################################################################
