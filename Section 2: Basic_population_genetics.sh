@@ -42,9 +42,14 @@ ggplot(eigenvec_data, aes(x=PC1, y=PC2, color=IID)) +
 ggsave("/home/gias3/admin/output_files/pca_plot.pdf")
 ggsave("/home/gias3/admin/output_files/pca_plot.png")
 
+q()
+#Save workspace image? [y/n/c]: y
+pwd (#print working directory)
+exit (#exit from the GIAS cluster)
 
 scp username@IP_address:~/"path to the file on the remote cluster"/Rplots.pdf .
 scp username@IP_address:~/"path to the file on the remote cluster"/pca_plot.png .
+#example: scp gias3@172.16.222.186:/home/gias3/participant_3/output_files/Rplots.pdf .
 
 #R: Launches R
 #install.packages("ggplot2") library(ggplot2): installs and loads ggplot2 for plotting
