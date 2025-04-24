@@ -92,7 +92,8 @@ conda activate bwa
 for file1 in output_files/*_sub_1_val_1.fq.gz; do
     file2=${file1/_sub_1_val_1.fq.gz/_sub_2_val_2.fq.gz}
     sample_name=$(basename "$file1" _sub_1_val_1.fq.gz)
-
+# The & at the end of the command allows the command to run all files in parallel.
+# If your system does not have enough CPU cores, remove the &
     bwa mem input_files/GCA_021130815.1_PanTigT.MC.v3_genomic.fna "$file1" "$file2" > "output_files/${sample_name}_aligned_reads.sam" &
 done
 
