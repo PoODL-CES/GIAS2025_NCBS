@@ -11,6 +11,7 @@ By the end of this workshop, you will be able to:
 4. Identify variants (SNPs and indels)
 5. Use filtered variants for basic population genetic analysis (PCA, Admixture, heterozygosity)
 
+Full version of this workshop is available at https://github.com/PoODL-CES/Genomics_learning_workshop
 
 ## Pre-requisites & Setup
 
