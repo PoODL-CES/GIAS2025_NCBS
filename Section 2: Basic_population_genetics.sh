@@ -74,13 +74,12 @@ INPUT_DIR="/home/gias3/admin/input_files"
 OUTPUT_DIR="/home/gias3/admin/output_files"
 INPUT_PREFIX="machali_Aligned_rangeWideMerge_strelka_update2_BENGAL_mac3_passOnly_biallelicOnly_noIndels_minMAF0Pt05_chr_E2_minDP3_minQ30_minGQ30_hwe_0.05_noIndels_missing_mm0.6_meandepth95percentile_noZSB"
 
-mkdir -p "$output_files"
-
 for K in {2..4}
-do 
-  admixture "$INPUT_DIR/$INPUT_PREFIX.bed" $K --out "$OUTPUT_DIR/${INPUT_PREFIX}_K${K}"
+do
+  admixture "$INPUT_DIR/$INPUT_PREFIX.bed" $K
+  mv "${INPUT_PREFIX}.${K}.Q" "$OUTPUT_DIR/${INPUT_PREFIX}_K${K}.Q"
+  mv "${INPUT_PREFIX}.${K}.P" "$OUTPUT_DIR/${INPUT_PREFIX}_K${K}.P"
 done
-
 
 #for K in {2..4}: loops through the values 2, 3, and 4
 #INPUT_DIR: specifies the location of input directory
