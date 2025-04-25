@@ -83,7 +83,7 @@ conda deactivate
 
 ## Activate the conda environment
 conda activate bwa
-(https://hcc.unl.edu/docs/applications/app_specific/bioinformatics_tools/alignment_tools/bwa/running_bwa_commands/)
+# (https://hcc.unl.edu/docs/applications/app_specific/bioinformatics_tools/alignment_tools/bwa/running_bwa_commands/)
 
 #bwa mem: runs the "mem" algorithm of BWA and give SAM (Sequence Alignment/Map format) as a output file. It is optimum for 70bp-1Mbp reads, and commonly used for Illumina short-read data.
 #GCA_021130815.1_PanTigT.MC.v3_genomic.fna: reference genome in FASTA format. The bwa index file should also be present.
