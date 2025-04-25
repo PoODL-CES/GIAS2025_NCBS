@@ -26,8 +26,10 @@ fastqc input_files/*.fq.gz -o output_files
 ## Deactivate the conda environment
 conda deactivate 
 
-## Open a new tab and download the html file to your system.
+## To view the html files
+# If you are using mobaxterm, right click on the html files which you can find on the left side panel in mobaxterm window and download it to your computer
 
+# If you are using windows subsystem for linux or mac terminal, open a new terminal window and copy file to your computer using scp command.
 scp -r gias3@172.16.222.186:~/participant_X/output_files/*.html ~/ (X=put your participant number, type password when asked: password is gias@ncbs)
 
 # Navigate to the directory where you have downloaded the html files in your computer and open it to visualize fastqc results
