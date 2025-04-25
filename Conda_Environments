@@ -33,5 +33,8 @@ PLINK is a toolset for whole-genome association studies.
 # conda create -n strelka -c bioconda strelka
 Strelka is a high-performance variant calling tool for small variants in next-generation sequencing data.
 
+# conda create -n admixture -c bioconda admixture
+Admixture is a tool used to estimate ancestries from genotype datasets.
+
 # conda create -n rtg-tools -c bioconda rtg-tools
 RTG Tools is a software suite by Real Time Genomics used in genomics to compare VCF files, generate variant statistics, and benchmark variant calling pipelines.
