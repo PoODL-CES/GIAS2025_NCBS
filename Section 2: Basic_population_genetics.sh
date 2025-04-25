@@ -1,3 +1,7 @@
+### Login credentials
+ssh gias3@172.16.222.186
+Password:gias@ncbs 
+
 #PCA
 
 #firstly, .bed, .bim and .fam files need to be generated. from a vcf file. 
