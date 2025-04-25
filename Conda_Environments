@@ -24,8 +24,8 @@ BCFtools is a set of utilities for processing and analyzing VCF and BCF files.
 # conda create -n vcftools -c bioconda vcftools
 VCFtools is a program suite for working with VCF files, enabling filtering, summarizing.
 
-# conda create -n r-ggplot2 -c conda-forge r-ggplot2
-ggplot2 is a popular R package for data visualization based on the grammar of graphics.
+# conda create -n r_env -c conda-forge r-base r-ggplot2 r-scales
+Creates a Conda environment named 'r_env' with R, ggplot2, and scales packages from conda-forge
 
 # conda create -n plink -c bioconda plink
 PLINK is a toolset for whole-genome association studies.
