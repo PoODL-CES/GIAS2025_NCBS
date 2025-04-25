@@ -98,6 +98,83 @@ done
 
 #same pattern for K=3 and K=4
 
+#To visualise the ADMIXTURE results, we plot it in R
+
+conda activate r_env
+
+R #(It will open R prompt)
+
+# Load libraries 
+
+library(ggplot2) 
+
+library(reshape2) 
+
+library(dplyr)  
+
+# Read ADMIXTURE Q file and sample IDs from .fam 
+
+q3 <- read.table("machali_...3.Q")  # Replace with actual full filename 
+
+fam <- read.table("machali_noZSB.fam") 
+
+sample_ids <- fam$V1 
+
+# Add sample IDs 
+
+q3$ID <- sample_ids 
+
+
+# OPTIONAL: Add groups/populations (e.g., from file or by pattern) 
+
+# If you have a file with sample ID and population: 
+
+# groups <- read.table("group_info.txt", header = TRUE) 
+
+# q3 <- merge(q3, groups, by.x = "ID", by.y = "SampleID") 
+
+# OR, extract group info from sample ID 
+
+q3$Group <- gsub(".*_(.*)", "\\1", q3$ID)  # example: get last part after underscore 
+
+# Reshape data for ggplot 
+
+q3_long <- melt(q3, id.vars = c("ID", "Group")) 
+
+# Sort individuals by group 
+
+q3_long <- q3_long %>% 
+
+  arrange(Group, ID) %>% 
+
+  mutate(ID = factor(ID, levels = unique(ID))) 
+
+# Plot 
+
+p <- ggplot(q3_long, aes(x = ID, y = value, fill = variable)) + 
+
+  geom_bar(stat = "identity", width = 1) + 
+
+  facet_grid(~Group, scales = "free_x", space = "free_x") + 
+
+  theme_minimal() + 
+
+  labs(x = "Individuals", y = "Ancestry Proportion", title = "ADMIXTURE Plot (K=3)") + 
+
+  theme(axis.text.x = element_blank(), 
+
+        axis.ticks.x = element_blank(), 
+
+        panel.spacing = unit(0.5, "lines"), 
+
+        strip.text.x = element_text(angle = 0, face = "bold"), 
+
+        legend.position = "right") + 
+
+  scale_fill_brewer(palette = "Set1") 
+# Save as PNG 
+
+ggsave("admixture_K3_grouped.png", p, width = 12, height = 6, dpi = 300) 
 
 #For Heterozygosity
 conda activate rtg-tools
