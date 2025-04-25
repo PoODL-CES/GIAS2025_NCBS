@@ -29,7 +29,7 @@ By the end of this workshop, you will be able to:
 
 ###  Learn About Illumina Sequencing
 
-- [How Illumina Sequencing Works](https://www.youtube.com/watch?v=fCd6B5HRaZ8&t=238s)
+- [How Illumina Sequencing Works](https://www.youtube.com/watch?v=fCd6B5HRaZ8&t)
 
 ###  Linux Shell Basics
 
