@@ -1,5 +1,5 @@
 ### Login credentials
-ssh gias3@172.16.222.186
+ssh -p58732@14.139.128.100
 Password:gias@ncbs 
 
 ## Navigate to your respective participant directories 
