@@ -5,7 +5,7 @@ Password:gias@ncbs
 #PCA
 
 #firstly, .bed, .bim and .fam files need to be generated. from a vcf file. 
-#.bed:(Browser Extensible Data) binary file that stores genotype calls for every individual at very SNP.
+#.bed:(Browser Extensible Data) binary file that stores genotype calls for every individual at every SNP.
 #.bim: tab-delimited text file with information about each SNP.
 #.fam: tab-delimited text file; contains information about each individual/sample.
 
